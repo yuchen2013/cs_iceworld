@@ -4,16 +4,15 @@ using namespace std;
 class particleSystem
 {
 private:
-	vector<particle> particles;//所有粒子对象
-	int max_count;//最多粒子个数
-	
+	int max_count;//粒子个数
+	vector<particle> particles;
 public:
-	particleSystem()//初始化
+	particleSystem()//构造函数
 	{
-		max_count = 350;
+		max_count = 300;
 		init();
 	}
-	void init()//初始化所有粒子
+	void init()//初始化
 	{
 		srand((unsigned)time(NULL));
 		particle* newOne;

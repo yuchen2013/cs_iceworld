@@ -1,38 +1,34 @@
-//次类是粒子类，实现粒子的一系列行为
 #include<stdlib.h>
 #include<GL\glut.h>
 #include<time.h>
 #include <iostream>
 using namespace  std;
-#define PI 3.1415
 class particle
 {
 private:
-	GLfloat x;//位置x坐标
-	GLfloat y;//y坐标
-	GLfloat z;//z坐标
+	GLfloat x;
+	GLfloat y;
+	GLfloat z;
 	GLfloat _speed;
 	GLfloat xd,zd;
 	GLfloat alpha;
 	GLfloat angle;
 	bool move;
-	//GLuint 100,40;
-	GLuint display_list;//一个五角星的显示列表索引
+	GLuint display_list;
 public:
 	particle(){}
 	particle(int s,int h){
-		//100 =s;40 = h;
 	}
-	GLuint createDL()//创建一个五角星显示列表
+	GLuint createDL()//雪花列表
 	{
 		GLuint DL;
 		DL = glGenLists(1);
 		glNewList(DL,GL_COMPILE); 
-		drawSnow();//画一个五角星
+		drawSnow();//画雪花
 		glEndList();
 		return DL;
 	}
-	void init()//随机初始化位置以及方向等信息
+	void init()//初始化
 	{
 		display_list = createDL();
 		_speed = 0.05;
@@ -48,7 +44,7 @@ public:
 		zd = rand()/(double)(RAND_MAX*10);
 		move = true;
 	}
-	void drawedge()//画五角星
+	void drawedge()
 	{
 		//glBegin(GL_QUADS);
 		//cout<<"x:"<<x<<" y:"<<y<<" z:"<<z<<endl;
@@ -112,7 +108,7 @@ public:
 		} 
 
 	}
-	void draw()//在（x, y, z）显示五角星
+	void draw()
 	{
 		GLfloat diffuse[] = {1, 0, 0};
 		glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, diffuse);
@@ -122,7 +118,7 @@ public:
 		glCallList(display_list);
 		glPopMatrix();
 	}
-	void update()//改变粒子位置及角度等信息
+	void update()
 	{
 		
 		if(alpha<=0){
